@@ -1,23 +1,23 @@
 // ****Declaring Variables**** 
 
-
 let male = document.getElementById("male");
 let female = document.getElementById("female");
-let genderChoice= document.getElementById("gender");
+let genderChoice;
 let calories;
 
 // **** function to add the choice of the button clicked and use it to calculate()****
-  male.addEventListener("click",function(){
-    genderChoice.value="Male";
 
+  male.addEventListener("click",function(){
+    genderChoice="Male";
+// add some style to the other button to tell the user that's not used
     male.style.fontWeight = "bolder";
     female.style.backgroundColor ="#adb5bd";
     female.style.borderColor ="#adb5bd";
   })   
 
   female.addEventListener("click",function(){
-    genderChoice.value="Female";
-    // add some style to the other button to tell the user that's not used
+    genderChoice="Female";
+    
     male.style.fontWeight = "bolder";
     male.style.backgroundColor ="#adb5bd";
     male.style.borderColor ="#adb5bd";
@@ -31,18 +31,17 @@ function calculate(){
   let height = Number(document.getElementById("height").value);
   let age = Number(document.getElementById("age").value);
 
-  if (genderChoice.value === "Female"){
+  if (genderChoice === "Female"){
   calories = 655.1+(9.563* weight)+(1.850*height)-(4.676* age);
 
-  }else if (genderChoice.value === "Male"){
+  }else if (genderChoice === "Male"){
   calories = 66.5+(13.75*weight)+(5.003*height)-(6.755* age);
   }
-  document.getElementById("result").innerText = "Calories Needed Per Day are "+ calories + " Calories";
+
+// **** Giving the user a visual result 
+
+document.getElementById("result").innerText = "Your Basal Metabolic Rate (BMR) is approximately "+ calories + " This represents the number of calories your body needs to maintain basic functions at rest.";
 }
-
-// **** Giving the client a visual result
-
-
 
 function handleKeyPress(event) {
   if (event.key === 'Enter') {
