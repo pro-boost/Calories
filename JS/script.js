@@ -1,33 +1,51 @@
-let computersChoice;
-
-function getComputerChoice() {
-  let choice = ["rock", "paper", "scissors"];
-  let random = Math.floor(Math.random() * choice.length);
-  computersChoice = choice[random];
-  return computersChoice;
-}
-
-computersChoice = getComputerChoice();
+// ****Declaring Variables**** 
 
 
+let male = document.getElementById("male");
+let female = document.getElementById("female");
+let genderChoice= document.getElementById("gender");
+let calories;
 
-function playRound(playersChoice){
-  let result;
-  playersChoice = playersChoice.toLowerCase();
-  if ((playersChoice==="rock" && computersChoice==="paper")||(playersChoice==="paper" && computersChoice==="scissors")||(playersChoice==="scissors" && computersChoice==="rock")){
-    result="you lose " + computersChoice + " beats " +playersChoice;
-  }else if ((playersChoice==="rock" && computersChoice==="scissors")||(playersChoice==="paper" && computersChoice==="rock")||(playersChoice==="scissors" && computersChoice==="paper")){
-    result="you win , " + playersChoice + " beats " + computersChoice;
-  }else {
-  result="It's a draw!";
+// **** function to add the choice of the button clicked and use it to calculate()****
+  male.addEventListener("click",function(){
+    genderChoice.value="Male";
+
+    male.style.fontWeight = "bolder";
+    female.style.backgroundColor ="#adb5bd";
+    female.style.borderColor ="#adb5bd";
+  })   
+
+  female.addEventListener("click",function(){
+    genderChoice.value="Female";
+    // add some style to the other button to tell the user that's not used
+    male.style.fontWeight = "bolder";
+    male.style.backgroundColor ="#adb5bd";
+    male.style.borderColor ="#adb5bd";
+  })
+
+
+// **** function to calculate calories depending on gender ****
+
+function calculate(){
+  let weight = Number(document.getElementById("weight").value);
+  let height = Number(document.getElementById("height").value);
+  let age = Number(document.getElementById("age").value);
+
+  if (genderChoice.value === "Female"){
+  calories = 655.1+(9.563* weight)+(1.850*height)-(4.676* age);
+
+  }else if (genderChoice.value === "Male"){
+  calories = 66.5+(13.75*weight)+(5.003*height)-(6.755* age);
   }
-
-  return result;
+  document.getElementById("result").innerText = "Calories Needed Per Day are "+ calories + " Calories";
 }
-playersChoice=prompt();
-console.log(playRound(playersChoice));
 
-console.log("Player's Choice is " + playersChoice);
-console.log("Computers's Choice is " + computersChoice);
+// **** Giving the client a visual result
 
 
+
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+      calculate();
+  }
+}
